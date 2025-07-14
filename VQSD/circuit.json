@@ -1,0 +1,206 @@
+{
+    "name": "ParametricQuantumCircuit",
+    "qubit_count": "2",
+    "gate_list": [
+        {
+            "name": "ParametricRYGate",
+            "target_qubit": "1",
+            "angle": "14.220392227172852"
+        },
+        {
+            "name": "ParametricRZGate",
+            "target_qubit": "0",
+            "angle": "5.3159055709838867"
+        },
+        {
+            "name": "ParametricRZGate",
+            "target_qubit": "1",
+            "angle": "6.2390127182006836"
+        },
+        {
+            "name": "CNOTGate",
+            "control_qubit": "1",
+            "target_qubit": "0"
+        },
+        {
+            "name": "CNOTGate",
+            "control_qubit": "0",
+            "target_qubit": "1"
+        },
+        {
+            "name": "ParametricRYGate",
+            "target_qubit": "1",
+            "angle": "6.9500613212585449"
+        },
+        {
+            "name": "CNOTGate",
+            "control_qubit": "0",
+            "target_qubit": "1"
+        },
+        {
+            "name": "ParametricRYGate",
+            "target_qubit": "0",
+            "angle": "1.3983966112136841"
+        },
+        {
+            "name": "ParametricRYGate",
+            "target_qubit": "1",
+            "angle": "6.2756004333496094"
+        },
+        {
+            "name": "ParametricRZGate",
+            "target_qubit": "1",
+            "angle": "4.1301131248474121"
+        },
+        {
+            "name": "ParametricRXGate",
+            "target_qubit": "1",
+            "angle": "5.2659368515014648"
+        },
+        {
+            "name": "CNOTGate",
+            "control_qubit": "1",
+            "target_qubit": "0"
+        },
+        {
+            "name": "ParametricRYGate",
+            "target_qubit": "0",
+            "angle": "4.3089995384216309"
+        },
+        {
+            "name": "ParametricRYGate",
+            "target_qubit": "1",
+            "angle": "0.80147755146026611"
+        },
+        {
+            "name": "CNOTGate",
+            "control_qubit": "0",
+            "target_qubit": "1"
+        },
+        {
+            "name": "ParametricRZGate",
+            "target_qubit": "0",
+            "angle": "-0.032309155911207199"
+        },
+        {
+            "name": "ParametricRYGate",
+            "target_qubit": "0",
+            "angle": "5.0109462738037109"
+        },
+        {
+            "name": "CNOTGate",
+            "control_qubit": "1",
+            "target_qubit": "0"
+        },
+        {
+            "name": "ParametricRZGate",
+            "target_qubit": "1",
+            "angle": "2.2936093807220459"
+        },
+        {
+            "name": "CNOTGate",
+            "control_qubit": "0",
+            "target_qubit": "1"
+        },
+        {
+            "name": "ParametricRXGate",
+            "target_qubit": "1",
+            "angle": "2.0751883983612061"
+        },
+        {
+            "name": "ParametricRYGate",
+            "target_qubit": "0",
+            "angle": "2.2057673931121826"
+        },
+        {
+            "name": "CNOTGate",
+            "control_qubit": "1",
+            "target_qubit": "0"
+        },
+        {
+            "name": "ParametricRYGate",
+            "target_qubit": "0",
+            "angle": "-0.15811578929424286"
+        },
+        {
+            "name": "ParametricRYGate",
+            "target_qubit": "1",
+            "angle": "-0.031408995389938354"
+        },
+        {
+            "name": "ParametricRXGate",
+            "target_qubit": "0",
+            "angle": "0.95916932821273804"
+        },
+        {
+            "name": "ParametricRZGate",
+            "target_qubit": "0",
+            "angle": "1.8638107776641846"
+        },
+        {
+            "name": "CNOTGate",
+            "control_qubit": "0",
+            "target_qubit": "1"
+        },
+        {
+            "name": "CNOTGate",
+            "control_qubit": "1",
+            "target_qubit": "0"
+        },
+        {
+            "name": "ParametricRZGate",
+            "target_qubit": "1",
+            "angle": "0.94180035591125488"
+        },
+        {
+            "name": "CNOTGate",
+            "control_qubit": "0",
+            "target_qubit": "1"
+        },
+        {
+            "name": "ParametricRZGate",
+            "target_qubit": "0",
+            "angle": "0.99171489477157593"
+        },
+        {
+            "name": "ParametricRZGate",
+            "target_qubit": "1",
+            "angle": "-0.031068829819560051"
+        },
+        {
+            "name": "ParametricRXGate",
+            "target_qubit": "0",
+            "angle": "-0.015846777707338333"
+        },
+        {
+            "name": "ParametricRZGate",
+            "target_qubit": "0",
+            "angle": "0.98333477973937988"
+        },
+        {
+            "name": "CNOTGate",
+            "control_qubit": "1",
+            "target_qubit": "0"
+        },
+        {
+            "name": "ParametricRXGate",
+            "target_qubit": "1",
+            "angle": "-0.0091994553804397583"
+        },
+        {
+            "name": "ParametricRZGate",
+            "target_qubit": "0",
+            "angle": "0.99607390165328979"
+        },
+        {
+            "name": "ParametricRYGate",
+            "target_qubit": "0",
+            "angle": "0.016747782006859779"
+        },
+        {
+            "name": "ParametricRYGate",
+            "target_qubit": "1",
+            "angle": "0.018649090081453323"
+        }
+    ]
+}
