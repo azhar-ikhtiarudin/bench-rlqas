@@ -8,7 +8,6 @@ Welcome to the official implementation of **BenchRL-QAS**, a framework designed 
 
 > **BenchRL-QAS: Benchmarking Reinforcement Learning Algorithms for Quantum Architecture Search**  
 > ArXiv:
----
 
 ## 📖 Overview
 
@@ -19,7 +18,6 @@ Welcome to the official implementation of **BenchRL-QAS**, a framework designed 
 - A consistent and fair **weighted ranking metric**
 - Evaluation across **9 RL agents**, covering both value-based and policy-gradient methods
 
----
 
 ## 🧠 Reinforcement Learning Algorithms
 
@@ -39,7 +37,7 @@ BenchRL-QAS benchmarks the following RL agents:
 
 Each algorithm is evaluated over multiple trials to ensure statistical significance.
 
----
+
 
 ## ⚛️ Quantum Problems
 
@@ -87,7 +85,6 @@ Options:
 - `--task`: one of `VQE`, `VQSD`, `VQC`, `stateprep`, or `all`
 - `--agent`: one of `DQN`, `DDQN`, `PPO`, etc., or `all`
 
----
 
 
 
