@@ -80,7 +80,7 @@ cd bench-rlqas
 Make sure you have either **[Anaconda](https://www.anaconda.com/)** or **[Miniconda](https://docs.conda.io/en/latest/miniconda.html)** installed before continuing.
 Create and activate the conda environment:
 ```bash
-conda create -n {name_your_environment} python=3.11
+conda create -n {name_your_environment} python=3.10
 conda activate {name_your_environment}
 ```
 
