@@ -78,11 +78,16 @@ git clone git@github.com:azhar-ikhtiarudin/bench-rlqas.git
 cd bench-rlqas
 ```
 Make sure you have either **[Anaconda](https://www.anaconda.com/)** or **[Miniconda](https://docs.conda.io/en/latest/miniconda.html)** installed before continuing.
-Create the conda environment from the provided `environment.yaml` file:
+Create and activate the conda environment:
+```bash
+conda create -n {name_your_environment} python=3.11
+conda activate {name_your_environment}
+```
+
+Then install the required packages:
 
 ```bash
-conda env create -f environment.yaml
-conda activate bench-rlqas
+pip install -r requirements.txt
 ```
 
 ### Run Experiments
