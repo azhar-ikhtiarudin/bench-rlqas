@@ -179,7 +179,7 @@ def one_episode(episode_no, env, agent, episodes):
             #     "train_final/rwd_sum": sum(rewards4return),
 
             #     })
-            print('time:', time.time()-t0)
+            # print('time:', time.time()-t0)
             if episode_no%20==0:
                 print("episode: {}/{}, score: {}, e: {:.2}, rwd: {} \n"
                         .format(episode_no, episodes, itr, agent.epsilon, reward),flush=True)
@@ -229,10 +229,10 @@ if __name__ == '__main__':
     args = get_args(sys.argv[1:])
 
 
-    results_path ="results/"
+    results_path ="State_Prep/results/"
     pathlib.Path(f"{results_path}{args.experiment_name}{args.config}").mkdir(parents=True, exist_ok=True)
-    device = torch.device(f"cuda:{args.gpu_id}")
-    # device = torch.device(f"cpu:{0}")
+    # device = torch.device(f"cuda:{args.gpu_id}")
+    device = torch.device(f"cpu:{0}")
     
     
     conf = get_config(args.experiment_name, f'{args.config}.cfg')

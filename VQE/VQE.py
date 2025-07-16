@@ -18,8 +18,6 @@ class Parametric_Circuit:
         self.noise_values = noise_values
         self.ansatz = ParametricQuantumCircuit(n_qubits)
 
-        
-
     def construct_ansatz(self, state):
         
         if len(self.noise_models) == 1:

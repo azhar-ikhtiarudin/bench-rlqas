@@ -50,7 +50,7 @@ class CircuitEnv():
         #self.problem_type = conf['problem']['type']
         self.done_threshold = conf['env'].get('accept_err', 0.01)  # How close we need to get to target
         self.target_loss = self.done_threshold
-        print(self.target_loss, self.done_threshold)
+        # print(self.target_loss, self.done_threshold)
 
         self.fn_type = conf['env']['fn_type']
         self.cnot_rwd_weight = conf['env'].get('cnot_rwd_weight', 1.)
@@ -157,7 +157,7 @@ class CircuitEnv():
         self.error_noiseless = self.error
         self.error_test = float(abs(self.target_loss - test_loss))
         self.error_noiseless_test = float(abs(self.target_loss - test_loss))
-        print(self.error, self.error_test)
+        # print(self.error, self.error_test)
         rwd = self.reward_fn(train_loss)
         self.current_reward = float(rwd)
         self.prev_loss = copy.copy(train_loss)

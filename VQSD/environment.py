@@ -484,7 +484,7 @@ class CircuitEnv():
                         rwd = -np.log(abs(self.error - self.done_threshold))
                     return rwd
             else:
-                np.save('threshold_crossed.npy', 0)
+                np.save('VQSD/threshold_crossed.npy', 0)
         
         elif self.fn_type == 'negative_above_chem_acc':
             if self.error > self.done_threshold:

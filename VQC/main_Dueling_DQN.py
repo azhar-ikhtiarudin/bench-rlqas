@@ -47,7 +47,7 @@ class Saver:
         # file_name = f'{self.rpath}/summary_{self.exp_seed}.p'
         # with open(file_name, 'wb') as handle:
         #     pickle.dump(self.stats_file, handle, protocol=pickle.HIGHEST_PROTOCOL)
-        print(self.stats_file['train'][0])
+        # print(self.stats_file['train'][0])
         with open(f"{self.rpath}/summary_{self.exp_seed}.json", "w") as outfile:
             json.dump(self.stats_file, outfile)
 
@@ -155,7 +155,7 @@ def one_episode(episode_no, env, agent, episodes):
         if done:
 
 
-            print('time:', time.time()-t0)
+            # print('time:', time.time()-t0)
             if episode_no%20==0:
                 print("episode: {}/{}, score: {}, e: {:.2}, rwd: {} \n"
                         .format(episode_no, episodes, itr, agent.epsilon, reward),flush=True)
@@ -187,7 +187,7 @@ def train(agent, env, episodes, seed, output_path,threshold):
             torch.save( {i: a._asdict() for i,a in enumerate(agent.memory.memory)}, f"{output_path}/thresh_{threshold}_{seed}_replay_buffer.pt")
         if env.error <= 0.0016:
             threshold_crossed += 1
-            np.save( f'threshold_crossed', threshold_crossed )
+            #np.save( f'threshold_crossed', threshold_crossed )
 
 def get_args(argv):
     parser = argparse.ArgumentParser()
@@ -206,10 +206,10 @@ if __name__ == '__main__':
     args = get_args(sys.argv[1:])
 
 
-    results_path ="results/"
+    results_path ="VQC/results/"
     pathlib.Path(f"{results_path}{args.experiment_name}{args.config}").mkdir(parents=True, exist_ok=True)
-    device = torch.device(f"cuda:{args.gpu_id}")
-    # device = torch.device(f"cpu:{0}")
+    # device = torch.device(f"cuda:{args.gpu_id}")
+    device = torch.device(f"cpu:{0}")
     
     
     conf = get_config(args.experiment_name, f'{args.config}.cfg')

@@ -50,7 +50,7 @@ class Saver:
         # file_name = f'{self.rpath}/summary_{self.exp_seed}.p'
         # with open(file_name, 'wb') as handle:
         #     pickle.dump(self.stats_file, handle, protocol=pickle.HIGHEST_PROTOCOL)
-        print(self.stats_file['train'][0])
+        # print(self.stats_file['train'][0])
         with open(f"{self.rpath}/summary_{self.exp_seed}.json", "w") as outfile:
             json.dump(self.stats_file, outfile)
 
@@ -229,10 +229,10 @@ if __name__ == '__main__':
     args = get_args(sys.argv[1:])
 
 
-    results_path ="results/"
+    results_path ="VQE/results/"
     pathlib.Path(f"{results_path}{args.experiment_name}{args.config}").mkdir(parents=True, exist_ok=True)
-    device = torch.device(f"cuda:{args.gpu_id}")
-    # device = torch.device(f"cpu:{0}")
+    # device = torch.device(f"cuda:{args.gpu_id}")
+    device = torch.device(f"cpu:{0}")
     
     
     conf = get_config(args.experiment_name, f'{args.config}.cfg')

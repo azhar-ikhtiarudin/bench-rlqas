@@ -213,7 +213,7 @@ def train(agent, env, episodes, seed, output_path,threshold):
             # torch.save( {i: a._asdict() for i,a in enumerate(agent.memory.memory)}, f"{output_path}/thresh_{threshold}_{seed}_replay_buffer.pt")
         # if env.error <= 0.0016:
         #     threshold_crossed += 1
-        #     np.save( f'threshold_crossed', threshold_crossed )
+        #     #np.save( f'threshold_crossed', threshold_crossed )
 
 def get_args(argv):
     parser = argparse.ArgumentParser()
@@ -232,10 +232,10 @@ if __name__ == '__main__':
     args = get_args(sys.argv[1:])
 
 
-    results_path ="results/"
+    results_path ="State_Prep/results/"
     pathlib.Path(f"{results_path}{args.experiment_name}{args.config}").mkdir(parents=True, exist_ok=True)
-    device = torch.device(f"cuda:{args.gpu_id}")
-    # device = torch.device(f"cpu:{0}")
+    # device = torch.device(f"cuda:{args.gpu_id}")
+    device = torch.device(f"cpu:{0}")
     
     
     conf = get_config(args.experiment_name, f'{args.config}.cfg')

@@ -11,11 +11,12 @@ from qulacs import Observable
 
 
 
-def get_config(config_name,experiment_name, path='configuration_files',
+def get_config(experiment_name, config_name, path='configuration_files',
                verbose=True):
     config_dict = {}
     Config = configparser.ConfigParser()
-    Config.read('{}/{}{}'.format(path,config_name,experiment_name))
+    # Config.read('{}/{}{}'.format(path,config_name,experiment_name))
+    Config.read('{}'.format(config_name))
     for sections in Config:
         config_dict[sections] = {}
         for key, val in Config.items(sections):
@@ -103,5 +104,5 @@ if __name__ == '__main__':
     __geometry = Config.problem['geometry'].replace(" ", "_")
     print(np.min(__ham['eigvals'].real) + __ham['energy_shift'])
     exit()
-    np.savez(f"mol_data/LiH_{Config.num_qubits}q_geom_{__geometry}_{Config.problem['mapping']}",**__ham)
+    #np.savez(f"mol_data/LiH_{Config.num_qubits}q_geom_{__geometry}_{Config.problem['mapping']}",**__ham)
    

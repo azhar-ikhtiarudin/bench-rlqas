@@ -51,12 +51,12 @@ class Saver:
                                                  }
 
     def save_file(self):
-        print("\nSAVE FILE")
+        # print("\nSAVE FILE")
         # file_name = f'{self.rpath}/summary_{self.exp_seed}.p'
         # with open(file_name, 'wb') as handle:
         #     pickle.dump(self.stats_file, handle, protocol=pickle.HIGHEST_PROTOCOL)
-        print(self.stats_file['train'][0])
-        print(type(self.stats_file['train'][0]))
+        # print(self.stats_file['train'][0])
+        # print(type(self.stats_file['train'][0]))
 
         with open(f"{self.rpath}/summary_{self.exp_seed}.json", "w") as outfile:
             json.dump(self.stats_file, outfile)
@@ -258,7 +258,7 @@ def train(agent, env, episodes, seed, output_path,threshold):
 
         if env.error <= 0.0016:
             threshold_crossed += 1
-            np.save( f'threshold_crossed', threshold_crossed )
+            #np.save( f'threshold_crossed', threshold_crossed )
 
 def get_args(argv):
     parser = argparse.ArgumentParser()
@@ -276,14 +276,14 @@ if __name__ == '__main__':
 
     args = get_args(sys.argv[1:])
 
-    results_path ="results/"
+    results_path ="VQC/results/"
     pathlib.Path(f"{results_path}{args.experiment_name}{args.config}").mkdir(parents=True, exist_ok=True)   
-    device = torch.device(f"cuda:{args.gpu_id}")
-    # device = torch.device(f"cpu:{0}")
+    # device = torch.device(f"cuda:{args.gpu_id}")
+    device = torch.device(f"cpu:{0}")
     
     conf = get_config(args.experiment_name, f'{args.config}.cfg')
-    print("\nAgent Type:", conf['agent']['agent_type'])
-    print("\nAgent Class:", conf['agent']['agent_class'])
+    # print("\nAgent Type:", conf['agent']['agent_type'])
+    # print("\nAgent Class:", conf['agent']['agent_class'])
 
     loss_dict, scores_dict, test_scores_dict, actions_dict = dict(), dict(), dict(), dict()
     torch.backends.cudnn.deterministic = True
@@ -315,7 +315,7 @@ if __name__ == '__main__':
     agent.saver = Saver(f"{results_path}{args.experiment_name}{args.config}", args.seed)
 
     if conf['agent']['init_net']: 
-        print("\n\tIf conf['agent']['init_net'] == True")
+        # print("\n\tIf conf['agent']['init_net'] == True")
         PATH = f"{results_path}{conf['agent']['init_net']}{args.seed}"
         agent.policy_net.load_state_dict(torch.load(PATH+f"_model.pt"))
         agent.target_net.load_state_dict(torch.load(PATH+f"_model.pt"))

@@ -188,7 +188,7 @@ def get_args(argv):
 if __name__ == '__main__':
     args = get_args(sys.argv[1:])
 
-    results_path = "results/"
+    results_path ="VQC/results/"
     pathlib.Path(f"{results_path}{args.experiment_name}{args.config}").mkdir(parents=True, exist_ok=True)
     device = torch.device(f"cuda:{args.gpu_id}" if torch.cuda.is_available() else "cpu")
     

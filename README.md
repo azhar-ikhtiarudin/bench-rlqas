@@ -1,7 +1,3 @@
-# Benchmarking RL algorithms for quantum architecture search on near-term quantum devices
-
-Welcome to the official repository for BenchRL-QAS, a benchmarking framework designed to evaluate reinforcement learning (RL) algorithms in the context of quantum architecture search (QAS). This project is based on the paper:
-
 # BenchRL-QAS: Benchmarking RL Algorithms for Quantum Architecture Search
 
 Welcome to the official implementation of **BenchRL-QAS**, a framework designed to evaluate **reinforcement learning (RL)** algorithms in **quantum architecture search (QAS)**. This repository is based on the paper:
@@ -9,14 +5,31 @@ Welcome to the official implementation of **BenchRL-QAS**, a framework designed 
 > **BenchRL-QAS: Benchmarking Reinforcement Learning Algorithms for Quantum Architecture Search**  
 > ArXiv:
 
-## 📖 Overview
 
-**BenchRL-QAS** is a unified benchmarking platform for evaluating RL-based quantum circuit design techniques. It provides:
+## ❓ Why BenchRL-QAS?
 
-- Automated discovery of efficient parameterized quantum circuits
-- Tasks spanning **4 key quantum algorithms** under **noiseless** and **noisy** settings
-- A consistent and fair **weighted ranking metric**
-- Evaluation across **9 RL agents**, covering both value-based and policy-gradient methods
+Despite the rising use of RL in quantum circuit design, previous efforts:
+- Often benchmark only a few RL agents in isolation,
+- Lack standardized metrics or reproducibility,
+- And rarely account for task complexity.
+
+BenchRL-QAS addresses this gap by:
+- Offering **the most extensive benchmark** for RL-QAS to date,
+- Evaluating 9 RL algorithms (e.g., DQN, PPO, A3C, DDQN, TPPO),
+- Including **both noiseless and noisy** experiments,
+- Providing **task-specific insights**, e.g., which algorithms perform best for VQE vs VQC,
+- Demonstrating the **“No Free Lunch” theorem** in practice, no RL agent dominates across all tasks,
+- Enabling **reproducibility** through open-source code and datasets.
+
+By using this benchmark, researchers and practitioners can:
+- Select suitable RL agents tailored to their quantum tasks,
+- Better understand trade-offs between circuit efficiency and accuracy,
+- Accelerate the development of scalable, noise-resilient quantum algorithms.
+
+## 📈 Highlights
+
+- Outperforms recent QAS methods (e.g., TF-QAS by [He et al., 2024](https://ojs.aaai.org/index.php/AAAI/article/view/29135)) in VQE (BeH₂) with **3 orders of magnitude better error** and **>50% fewer gates**.
+- RL-VQC with DQN-rank achieves **>99.99% training and test accuracy**, surpassing hardware-efficient ansatz.
 
 
 ## 🧠 Reinforcement Learning Algorithms
@@ -62,8 +75,8 @@ Tasks are evaluated on 2–8 qubit systems in both noiseless and noisy settings.
 Clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/bench-rl-qas/benchrl-qas.git
-cd benchrl-qas
+git clone git@github.com:azhar-ikhtiarudin/bench-rlqas.git
+cd bench-rlqas
 pip install -r requirements.txt
 ```
 
@@ -78,13 +91,12 @@ python main.py --task VQE --agent PPO
 Benchmark **all agents** across **all tasks**:
 
 ```bash
-python main.py --task all --agent all
+python main.py --task ALL --agent ALL
 ```
 
 Options:
-- `--task`: one of `VQE`, `VQSD`, `VQC`, `stateprep`, or `all`
-- `--agent`: one of `DQN`, `DDQN`, `PPO`, etc., or `all`
-
+- `--task`: one of `VQE`, `VQSD`, `VQC`, `Srate_Prep`, or `ALL`
+- `--agent`: one of `A2C`, `A3C`, `DQN`, `DQN_PER`, `DQN_rank`, `Dueling_DQN`, `DDQN`, `PPO`, `TPPO`, or `ALL`
 
 
 
@@ -97,4 +109,4 @@ We welcome contributions from the community! You can help by:
 - Improving visualizations or logging tools
 - Enhancing the benchmarking or noise models
 
-Feel free to submit a pull request or open an issue!# bench-rlqas
+Feel free to submit a pull request or open an issue!

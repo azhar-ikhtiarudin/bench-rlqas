@@ -195,7 +195,7 @@ class A3CWorker(mp.Process):
         self.device = device
         self.episodes = conf['general']['episodes']
         self.threshold = conf['env']['accept_err']
-        self.output_path = f"results/{args.experiment_name}{args.config}"
+        self.output_path = f"VQSD/results/{args.experiment_name}{args.config}"
 
         # == Local Model ==
         self.env = CircuitEnv(conf, device=device)
@@ -267,7 +267,7 @@ class A3CWorker(mp.Process):
                         if self.global_ep.value >= self.episodes:
                             break
 
-                        print(f'DONE: Worker-{self.name} | Global Episode={self.global_ep.value+1} | Total Step {self.name} = {self.total_step+1} | Local Eps Iter={itr+1} | Time Len={len(time_list)} | Error Len={len(error_list)} | Reward Len={len(rewards)} | Actions Len={len(actions)} | States Len={len(states)}')
+                        # print(f'Worker-{self.name} | Global Episode={self.global_ep.value+1} | Total Step {self.name} = {self.total_step+1} | Local Eps Iter={itr+1} | Time Len={len(time_list)} | Error Len={len(error_list)} | Reward Len={len(rewards)} | Actions Len={len(actions)} | States Len={len(states)}')
                         nfev = 0 # TO BE CHANGED
 
                         with self.global_data_dict_lock:
@@ -299,10 +299,27 @@ class A3CWorker(mp.Process):
             #     self.global_net.saver.save_file()
             #     # torch.save(global_net.state_dict(), f"{self.output_path}/thresh_{self.threshold}_{self.seed}_global_net.pt")
             #     # torch.save(global_optimizer.state_dict(), f"{self.output_path}/thresh_{self.threshold}_{self.seed}_global_opt.pt")
+
+            if (self.global_ep.value-1) % 20 == 0:
+                # print('The')
+                args = get_args(sys.argv[1:])
+                results_path ="VQSD/results/"
+                # pathlib.Path(f"{results_path}{args.experiment_name}{args.config}").mkdir(parents=True, exist_ok=True)   
+                results_path = f"{results_path}{args.experiment_name}{args.config}"
+                # print('SAVING IN:', results_path)
+                # exit()
+                filename = f'{results_path}/summary_{args.seed}.json'
+                with open(filename, 'w') as json_file:
+                    json.dump(dict(self.global_data_dict.items()), json_file)    
+                
+                print("episode: {}/{}, score: {}, rwd: {} \n"
+                    .format(self.global_ep.value-1, self.episodes, itr, reward),flush=True)
+                # print(f'\nData saved to {filename} on episode {self.global_ep.value}')
+            
             
             if self.env.error <= 0.0016:
                 threshold_crossed += 1
-                np.save(f'threshold_crossed', threshold_crossed)
+                #np.save(f'threshold_crossed', threshold_crossed)
 
     def v_wrap(self, np_array, dtype=np.float64):
         """Helper Function"""
@@ -385,7 +402,7 @@ if __name__ == '__main__':
 
     # == Configs, Seeds, etc ==
     args = get_args(sys.argv[1:])
-    results_path ="results/"
+    results_path ="VQSD/results/"
     pathlib.Path(f"{results_path}{args.experiment_name}{args.config}").mkdir(parents=True, exist_ok=True)   
 
     torch.backends.cudnn.deterministic = True
@@ -397,8 +414,8 @@ if __name__ == '__main__':
 
     # == Environment ==
     conf = get_config(args.experiment_name, f'{args.config}.cfg')
-    # device = torch.device(f'cpu:{0}')
-    device = torch.device(f"cuda:{args.gpu_id}")
+    device = torch.device(f'cpu:{0}')
+    # device = torch.device(f"cuda:{args.gpu_id}")
     env = CircuitEnv(conf, device=device)
 
 
@@ -406,7 +423,7 @@ if __name__ == '__main__':
     # num_processes = mp.cpu_count() # Set based on the Number of CPUs
     num_processes =  conf['env']['num_workers'] # Number of Workers set from Hyperparameter
     mp.set_start_method('spawn')
-    print(f"\nNumber of Parallel Processes (Workers): {num_processes}\n")
+    # print(f"\nNumber of Parallel Processes (Workers): {num_processes}\n")
 
 
     # == Define Global Shared Model and Optimizer ==
@@ -446,7 +463,7 @@ if __name__ == '__main__':
     with open(filename, 'w') as json_file:
         json.dump(global_data_dict_file, json_file)
     
-    print(f'\nData saved to {filename}')
+    # print(f'\nData saved to {filename}')
 
     # === Data Type Results Format: ===
     #

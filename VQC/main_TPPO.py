@@ -45,7 +45,7 @@ class Saver:
                                                  'rewards': []}
 
     def save_file(self):
-        print(self.stats_file['train'][0])
+        # print(self.stats_file['train'][0])
         with open(f"{self.rpath}/summary_{self.exp_seed}.json", "w") as outfile:
             json.dump(self.stats_file, outfile)
 
@@ -96,7 +96,7 @@ def agent_test(env, agent, episode_no, seed, output_path, threshold):
                 torch.save(agent.policy.state_dict(), f"{output_path}/thresh_{threshold}_{seed}_best_geo_{env.current_bond_distance}_model.pt")
                 torch.save(agent.optim_policy.state_dict(), f"{output_path}/thresh_{threshold}_{seed}_best_geo_{env.current_bond_distance}_optim.pt")
             agent.saver.validate_stats(episode_no, 'test')
-            print("Hello")
+            # print("Hello")
             return reward, t
 
 def one_episode(episode_no, env, agent, episodes):
@@ -144,7 +144,7 @@ def train(agent, env, episodes, seed, output_path, threshold):
             torch.save(agent.optim_value.state_dict(), f"{output_path}/thresh_{threshold}_{seed}_value_optim.pt")
         if env.error <= 0.0016:
             threshold_crossed += 1
-            np.save(f'threshold_crossed', threshold_crossed)
+            #np.save(f'threshold_crossed', threshold_crossed)
 
 def get_args(argv):
     parser = argparse.ArgumentParser()
@@ -159,10 +159,10 @@ def get_args(argv):
 
 if __name__ == '__main__':
     args = get_args(sys.argv[1:])
-    results_path = "results/"
+    results_path ="VQC/results/"
     pathlib.Path(f"{results_path}{args.experiment_name}{args.config}").mkdir(parents=True, exist_ok=True)
-    device = torch.device(f"cuda:{args.gpu_id}")
-    # device = torch.device("cpu")  # Uncomment to force CPU if needed
+    # device = torch.device(f"cuda:{args.gpu_id}")
+    device = torch.device("cpu")  # Uncomment to force CPU if needed
 
     conf = get_config(args.experiment_name, f'{args.config}.cfg')
 
@@ -188,9 +188,9 @@ if __name__ == '__main__':
     # Debugging: Verify state size consistency
     modified_state = modify_state(initial_state, environment, conf, device)
     actual_state_size = modified_state.shape[0]
-    print(f"Environment state_size: {environment.state_size}")
-    print(f"Base state size (from reset): {base_state_size}, Effective state size: {effective_state_size}")
-    print(f"Modified state shape: {modified_state.shape}, Expected size: {effective_state_size}")
+    # print(f"Environment state_size: {environment.state_size}")
+    # print(f"Base state size (from reset): {base_state_size}, Effective state size: {effective_state_size}")
+    # print(f"Modified state shape: {modified_state.shape}, Expected size: {effective_state_size}")
     if actual_state_size != effective_state_size:
         raise ValueError(f"State size mismatch: expected {effective_state_size}, got {actual_state_size}")
     if base_state_size != environment.state_size:
@@ -203,9 +203,9 @@ if __name__ == '__main__':
     agent.saver = Saver(f"{results_path}{args.experiment_name}{args.config}", args.seed)
     
     # Debug: Verify device placement
-    print(f"Agent policy device: {next(agent.policy.parameters()).device}")
-    print(f"Agent value device: {next(agent.value.parameters()).device}")
-    print(f"Agent action size: {agent.action_size}, Translate dict length: {len(agent.translate)}")
+    # print(f"Agent policy device: {next(agent.policy.parameters()).device}")
+    # print(f"Agent value device: {next(agent.value.parameters()).device}")
+    # print(f"Agent action size: {agent.action_size}, Translate dict length: {len(agent.translate)}")
 
     train(agent, environment, conf['general']['episodes'], args.seed, 
           f"{results_path}{args.experiment_name}{args.config}", conf['env']['accept_err'])

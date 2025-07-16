@@ -70,7 +70,7 @@ class CircuitEnv():
         self.current_reward = 0
         
         self.curriculum_dict = {}
-        __ham = np.load(f"mol_data/{self.mol}_{self.num_qubits}q_geom_{self.geometry}_{self.ham_mapping}.npz")
+        __ham = np.load(f"State_Prep/mol_data/{self.mol}_{self.num_qubits}q_geom_{self.geometry}_{self.ham_mapping}.npz")
         # print(f"mol_data/{self.mol}_{self.num_qubits}q_geom_{self.geometry}_{self.ham_mapping}.npz")
         
         
@@ -283,7 +283,7 @@ class CircuitEnv():
         self.curriculum = copy.deepcopy(self.curriculum_dict[str(self.current_bond_distance)])
         self.done_threshold = copy.deepcopy(self.curriculum.get_current_threshold())
         self.geometry = self.geometry[:-3] + str(self.current_bond_distance)
-        __ham = np.load(f"mol_data/{self.mol}_{self.num_qubits}q_geom_{self.geometry}_{self.ham_mapping}.npz")
+        __ham = np.load(f"State_Prep/mol_data/{self.mol}_{self.num_qubits}q_geom_{self.geometry}_{self.ham_mapping}.npz")
         self.hamiltonian, self.weights,eigvals, self.energy_shift = __ham['hamiltonian'], __ham['weights'],__ham['eigvals'], __ham['energy_shift']
         self.min_eig = self.fake_min_energy if self.fake_min_energy is not None else min(eigvals) + self.energy_shift
         self.max_eig = max(eigvals)+self.energy_shift
@@ -557,7 +557,7 @@ class CircuitEnv():
                         rwd = -np.log(abs(self.error - self.done_threshold))
                     return rwd
             else:
-                np.save('threshold_crossed.npy', 0)
+                np.save('State_Prep/threshold_crossed.npy', 0)
         
         elif self.fn_type == 'negative_above_chem_acc':
             if self.error > self.done_threshold:
