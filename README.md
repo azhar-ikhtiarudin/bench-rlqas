@@ -29,24 +29,23 @@ By using this benchmark, researchers and practitioners can:
 ## 📈 Highlights
 
 - Outperforms recent QAS methods (e.g., TF-QAS by [He et al., 2024](https://ojs.aaai.org/index.php/AAAI/article/view/29135)) in VQE (BeH₂) with **3 orders of magnitude better error** and **>50% fewer gates**.
-- RL-VQC with DQN-rank achieves **>99.99% training and test accuracy**, surpassing hardware-efficient ansatz.
+- RL-VQC with DQN-rank reaches **>99.99% training and test accuracy**, surpassing both the hardware-efficient ansatz (HEA) and net-based approach by [Du et al., 2022](https://www.nature.com/articles/s41534-022-00570-y).
 
 
 ## 🧠 Reinforcement Learning Algorithms
 
 BenchRL-QAS benchmarks the following RL agents:
-
-| Category           | Algorithm            | Description                                     |
-|--------------------|----------------------|-------------------------------------------------|
-| **Value-based**    | `DQN`                | Deep Q-Network                                  |
-|                    | `DQN PER`            | Prioritized Experience Replay                   |
-|                    | `DQN Rank`           | Rank-based action prioritization                |
-|                    | `Dueling DQN`        | Dueling value and advantage streams             |
-|                    | `DDQN`               | Double DQN to reduce overestimation             |
-| **Policy-gradient**| `A2C`                | Advantage Actor-Critic                          |
-|                    | `A3C`                | Asynchronous Advantage Actor-Critic             |
-|                    | `PPO`                | Proximal Policy Optimization                    |
-|                    | `TPPO`               | Truly Proximal Policy Optimization              |
+| Category            | Algorithm     | Description                                     | Citation |
+|---------------------|---------------|-------------------------------------------------|----------|
+| **Value-based**     | `DQN`         | Deep Q-Network                                  | [Mnih et al., 2013](https://arxiv.org/abs/1312.5602) |
+|                     | `DQN PER`     | Prioritized Experience Replay                   | [Schaul et al., 2016](https://arxiv.org/abs/1511.05952) |
+|                     | `DQN Rank`    | Rank-based action prioritization                | [Schaul et al., 2016](https://arxiv.org/abs/1511.05952) |
+|                     | `Dueling DQN` | Dueling value and advantage streams             | [Wang et al., 2016](https://arxiv.org/abs/1511.06581) |
+|                     | `DDQN`        | Double DQN to reduce overestimation             | [Van Hasselt et al., 2016](https://ojs.aaai.org/index.php/AAAI/article/view/10295) |
+| **Policy-gradient** | `A2C`         | Advantage Actor-Critic                          | [Sutton & Barto, 1998](https://web.stanford.edu/class/psych209/Readings/SuttonBartoIPRLBook2ndEd.pdf), [Mnih et al., 2016](https://proceedings.mlr.press/v48/mniha16.html)|
+|                     | `A3C`         | Asynchronous Advantage Actor-Critic             | [Mnih et al., 2016](https://proceedings.mlr.press/v48/mniha16.html) |
+|                     | `PPO`         | Proximal Policy Optimization                    | [Schulman et al., 2017](https://arxiv.org/abs/1707.06347) |
+|                     | `TPPO`        | Truly Proximal Policy Optimization              | [Wang et al., 2020](https://arxiv.org/abs/1903.07940) |
 
 Each algorithm is evaluated over multiple trials to ensure statistical significance.
 
@@ -72,12 +71,18 @@ Tasks are evaluated on 2–8 qubit systems in both noiseless and noisy settings.
 
 ### Installation
 
-Clone the repository and install the dependencies:
+Clone the repository and navigate to the project directory:
 
 ```bash
 git clone git@github.com:azhar-ikhtiarudin/bench-rlqas.git
 cd bench-rlqas
-pip install -r requirements.txt
+```
+Make sure you have either **[Anaconda](https://www.anaconda.com/)** or **[Miniconda](https://docs.conda.io/en/latest/miniconda.html)** installed before continuing.
+Create the conda environment from the provided `environment.yaml` file:
+
+```bash
+conda env create -f environment.yaml
+conda activate bench-rlqas
 ```
 
 ### Run Experiments
@@ -95,7 +100,7 @@ python main.py --task ALL --agent ALL
 ```
 
 Options:
-- `--task`: one of `VQE`, `VQSD`, `VQC`, `Srate_Prep`, or `ALL`
+- `--task`: one of `VQE`, `VQSD`, `VQC`, `State_Prep`, or `ALL`
 - `--agent`: one of `A2C`, `A3C`, `DQN`, `DQN_PER`, `DQN_rank`, `Dueling_DQN`, `DDQN`, `PPO`, `TPPO`, or `ALL`
 
 
