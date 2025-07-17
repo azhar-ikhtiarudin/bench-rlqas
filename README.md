@@ -3,7 +3,7 @@
 Welcome to the official implementation of **BenchRL-QAS**, a framework designed to evaluate **reinforcement learning (RL)** algorithms in **quantum architecture search (QAS)**. This repository is based on the paper:
 
 > **BenchRL-QAS: Benchmarking Reinforcement Learning Algorithms for Quantum Architecture Search**  
-> ArXiv:..
+> ArXiv: https://arxiv.org/pdf/2507.12189
 
 
 ## ❓ Why BenchRL-QAS?
